@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Silk Way Cargo24</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Silk Way Cargo24
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="track.html">Отслеживание</a></li>
+                        <li><a href="contacts.html" class="active">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Контакты</h1>
+            <p>Свяжитесь с нами любым удобным способом</p>
+        </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section class="contacts" style="padding-top: 60px;">
+        <div class="container">
+            <div class="contacts-grid">
+                <!-- Контактная информация -->
+                <div>
+                    <div class="contact-info" style="margin-bottom: 30px;">
+                        <h3>📍 Главный офис</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Адрес:</strong><br>
+                                г. Алматы, Улица Толе би, 109Б<br>
+                                БЦ "Толе би", офис 201
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <strong>Телефон:</strong><br>
+                                +7 (727) 123-45-67<br>
+                                +7 (707) 987-65-43
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <strong>Email:</strong><br>
+                                info@movigo.kz<br>
+                                sales@movigo.kz
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div>
+                                <strong>Режим работы:</strong><br>
+                                Пн-Пт: 9:00 - 18:00<br>
+                                Сб-Вс: выходные
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <h3>📞 Дополнительные офисы</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">🏢</div>
+                            <div>
+                                <strong>Санкт-Петербург:</strong><br>
+                                +7 (812) 123-45-67<br>
+                                info-spb@cargopro.ru
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🏢</div>
+                            <div>
+                                <strong>Екатеринбург:</strong><br>
+                                +7 (343) 123-45-67<br>
+                                info-ekb@cargopro.ru
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🏢</div>
+                            <div>
+                                <strong>Новосибирск:</strong><br>
+                                +7 (383) 123-45-67<br>
+                                info-nsk@cargopro.ru
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Форма обратной связи -->
+                <div class="contact-form">
+                    <h3>📝 Оставить заявку</h3>
+                    <form action="https://formspree.io/f/xqedqjgw" method="POST" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ваше имя *</label>
+                            <input type="text" name="name" id="name" placeholder="Иван Иванов" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" name="email" id="email" placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" name="phone" id="phone" placeholder="+7 (___) ___-__-__">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Интересующая услуга</label>
+                            <select name="service" id="service">
+                                <option value="">Выберите услугу</option>
+                                <option value="air">Авиаперевозки</option>
+                                <option value="sea">Морские перевозки</option>
+                                <option value="auto">Автоперевозки</option>
+                                <option value="rail">Железнодорожные</option>
+                                <option value="customs">Таможенное оформление</option>
+                                <option value="other">Другое</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение *</label>
+                            <textarea name="message" id="message" placeholder="Опишите ваш груз или задайте вопрос..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Карта -->
+            <div style="margin-top: 60px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 30px; text-align: center;">📍 Мы на карте</h3>
+                <div style="border-radius: 10px; overflow: hidden; box-shadow: var(--shadow);">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2904.749389783596!2d76.94545831598307!3d43.24016197913672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3883723c4c7a0d47%3A0x1e19aae60c14e2a!2z0L_RgNC-0YHQvdCwINCY0LfQsNC70L7QstCw!5e0!3m2!1sru!2skz!4v1700000000000!5m2!1sru!2skz"
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <p style="text-align: center; margin-top: 15px; color: var(--light-text);">
+                    г. Алматы, Улица Толе би, 109Б
+                </p>
+            </div>
+
+            <!-- Часто задаваемые вопросы -->
+            <div style="margin-top: 60px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 30px; text-align: center;">❓ Часто задаваемые вопросы</h3>
+                <div style="display: grid; gap: 20px;">
+                    <div style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: var(--shadow);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">Как быстро вы можете рассчитать стоимость доставки?</h4>
+                        <p style="color: var(--light-text);">Мы рассчитываем предварительную стоимость в течение 15-30 минут. Окончательная смета предоставляется после уточнения всех деталей груза.</p>
+                    </div>
+                    <div style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: var(--shadow);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">Какие документы нужны для отправки груза?</h4>
+                        <p style="color: var(--light-text);">Для физических лиц: паспорт, опись груза. Для юридических лиц: реквизиты компании, инвойс, упаковочный лист. Мы помогаем оформить все необходимые документы.</p>
+                    </div>
+                    <div style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: var(--shadow);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">Как отследить груз?</h4>
+                        <p style="color: var(--light-text);">После отправки груза вы получите трек-номер для отслеживания. Также наш менеджер будет информировать вас о статусе доставки.</p>
+                    </div>
+                    <div style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: var(--shadow);">
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">Какой срок доставки из Китая?</h4>
+                        <p style="color: var(--light-text);">Авиа: 5-7 дней, море: 25-35 дней, авто: 18-25 дней. Сроки могут варьироваться в зависимости от сезона и загруженности.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hero" style="background: linear-gradient(135deg, #0D47A1 0%, #1565c0 100%); padding: 60px 0;">
+        <div class="container">
+            <h1>Silk Way Cargo24 — движемся вместе с вами</h1>
+            <p>Доставка всегда в пути, надежность и скорость гарантированы</p>
+            <a href="contacts.html" class="btn">Заказать доставку</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>О компании</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#">Морские перевозки</a></li>
+                        <li><a href="#">Авиаперевозки</a></li>
+                        <li><a href="#">Автоперевозки</a></li>
+                        <li><a href="#">Железнодорожные</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li>📍 г. Алматы, ул. Толе би 109б</li>
+                        <li>📞 +7 (727) 123-45-67</li>
+                        <li>✉️ info@movigo.kz</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Silk Way Cargo24. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отслеживание грузов - Silk Way Cargo24</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Silk Way Cargo24
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="track.html" class="active">Отслеживание</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Отслеживание грузов</h1>
+            <p>Найдите ваш груз по трек-номеру</p>
+        </div>
+    </section>
+
+    <!-- Tracking Section -->
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="max-width: 600px; margin: 0 auto;">
+                <!-- Форма поиска -->
+                <div style="background: var(--light-bg); padding: 40px; border-radius: 10px; margin-bottom: 40px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 30px; text-align: center;">Введите номер для отслеживания</h2>
+                    
+                    <form id="trackForm" style="display: flex; gap: 10px; margin-bottom: 20px; align-items: stretch;">
+                        <input 
+                            type="text" 
+                            id="trackNumber" 
+                            placeholder="Например: MV-2026-001234" 
+                            style="flex: 1; padding: 15px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;"
+                            required
+                        >
+                        <button type="submit" class="btn" style="margin: 0; cursor: pointer; z-index: 10; padding: 15px 30px; flex-shrink: 0;">Найти</button>
+                    </form>
+                    
+                    <p style="color: var(--light-text); font-size: 0.9rem; text-align: center;">
+                        Трек-номер вы получите в подтверждающем письме от нас
+                    </p>
+                </div>
+
+                <!-- Результат поиска -->
+                <div id="trackResult" style="display: none;">
+                    <div style="background: var(--white); padding: 30px; border-radius: 10px; border-left: 5px solid var(--primary-color); box-shadow: var(--shadow);">
+                        <h3 style="color: var(--primary-color); margin-bottom: 20px;">Статус груза</h3>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <p style="color: var(--light-text); margin-bottom: 5px;"><strong>Номер груза:</strong></p>
+                            <p style="font-size: 1.2rem; color: var(--dark-text);" id="displayTrackNumber"></p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <p style="color: var(--light-text); margin-bottom: 5px;"><strong>Статус:</strong></p>
+                            <p style="font-size: 1.1rem; color: var(--primary-color); font-weight: bold;" id="displayStatus"></p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <p style="color: var(--light-text); margin-bottom: 5px;"><strong>Откуда:</strong></p>
+                            <p style="color: var(--dark-text);" id="displayFrom"></p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <p style="color: var(--light-text); margin-bottom: 5px;"><strong>Куда:</strong></p>
+                            <p style="color: var(--dark-text);" id="displayTo"></p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <p style="color: var(--light-text); margin-bottom: 5px;"><strong>Дата отправки:</strong></p>
+                            <p style="color: var(--dark-text);" id="displayDate"></p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <p style="color: var(--light-text); margin-bottom: 10px;"><strong>История доставки:</strong></p>
+                            <div id="displayHistory" style="border-left: 3px solid var(--primary-color); padding-left: 20px;"></div>
+                        </div>
+
+                        <div style="background: #f0f8ff; padding: 15px; border-radius: 5px; margin-top: 25px;">
+                            <p style="color: var(--primary-color); margin: 0;"><strong>ℹ️ Для уточнения информации:</strong></p>
+                            <p style="color: var(--light-text); margin: 5px 0 0 0;">Свяжитесь с нами по номеру <strong>+7 (727) 123-45-67</strong></p>
+                        </div>
+
+                        <button type="button" onclick="resetTrack()" class="btn" style="width: 100%; margin-top: 20px; display: inline-block; cursor: pointer;">Новый поиск</button>
+                        <button type="button" id="deleteShipmentBtn" onclick="" class="btn" style="width: 100%; margin-top: 10px; background: #e74c3c; display: none; cursor: pointer;">Удалить груз</button>
+                    </div>
+                </div>
+
+                <!-- Сообщение об ошибке -->
+                <div id="trackError" style="display: none; background: #ffe6e6; padding: 20px; border-radius: 10px; border-left: 5px solid var(--accent-color);">
+                    <p style="color: var(--accent-color); margin: 0;"><strong>❌ Груз не найден</strong></p>
+                    <p style="color: var(--light-text); margin: 10px 0 0 0;">Проверьте правильность трек-номера и попробуйте снова</p>
+                </div>
+
+                <!-- История поиска -->
+                <div style="margin-top: 30px;">
+                    <h4 style="color: var(--primary-color); margin-bottom: 15px;">История поиска:</h4>
+                    <div id="searchHistory">
+                        <p style="color: var(--light-text); text-align: center;">История поиска пуста</p>
+                    </div>
+                </div>
+
+                <!-- Кнопка добавления груза -->
+                <div style="margin-top: 30px; text-align: center;">
+                    <button type="button" id="addShipmentBtn" onclick="showAddShipmentForm()" 
+                        class="btn" style="display: inline-block; cursor: pointer; background: #27ae60;">
+                        + Добавить свой груз
+                    </button>
+                </div>
+
+                <!-- Форма добавления груза -->
+                <div id="addShipmentForm" style="display: none; background: var(--light-bg); padding: 30px; border-radius: 10px; margin-top: 20px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Создать новый груз</h3>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--dark-text);">Трек-номер:</label>
+                        <input type="text" id="newTrackNumber" 
+                            style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;" 
+                            readonly>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--dark-text);">Откуда (город, страна):</label>
+                        <input type="text" id="newFrom" placeholder="Например: Москва, Россия"
+                            style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;">
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--dark-text);">Куда (город, страна):</label>
+                        <input type="text" id="newTo" placeholder="Например: Берлин, Германия"
+                            style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 5px; color: var(--dark-text);">Статус:</label>
+                        <select id="newStatus" style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;">
+                            <option value="Создан">Создан</option>
+                            <option value="В пути">В пути</option>
+                            <option value="На таможне">На таможне</option>
+                            <option value="Доставлено">Доставлено</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" onclick="createShipment()" 
+                            class="btn" style="flex: 1; cursor: pointer; background: #27ae60;">Создать груз</button>
+                        <button type="button" onclick="hideAddShipmentForm()" 
+                            class="btn" style="flex: 1; cursor: pointer; background: #95a5a6;">Отмена</button>
+                    </div>
+                </div>
+
+                <!-- Мои грузы -->
+                <div style="margin-top: 40px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Мои грузы</h3>
+                    <div id="myShipmentsList">
+                        <p style="color: var(--light-text); text-align: center;">У вас пока нет грузов</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Информационные карточки -->
+            <div style="margin-top: 60px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 30px; text-align: center;">Как работает отслеживание?</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: var(--shadow); text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">📬</div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">1. Получите номер</h4>
+                        <p style="color: var(--light-text);">После оформления заказа вы получите уникальный трек-номер по email</p>
+                    </div>
+                    
+                    <div style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: var(--shadow); text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">🔍</div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">2. Введите номер</h4>
+                        <p style="color: var(--light-text);">Введите трек-номер в форму выше и нажмите кнопку "Найти"</p>
+                    </div>
+                    
+                    <div style="background: var(--white); padding: 25px; border-radius: 10px; box-shadow: var(--shadow); text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">📍</div>
+                        <h4 style="color: var(--primary-color); margin-bottom: 10px;">3. Отслеживайте</h4>
+                        <p style="color: var(--light-text);">Смотрите статус и историю доставки вашего груза в реальном времени</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>О компании</h4>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#">Морские перевозки</a></li>
+                        <li><a href="#">Авиаперевозки</a></li>
+                        <li><a href="#">Автоперевозки</a></li>
+                        <li><a href="#">Железнодорожные</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li>📍 г. Алматы, Улица Толе би, 109Б</li>
+                        <li>📞 +7 (727) 123-45-67</li>
+                        <li>✉️ info@movigo.kz</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Silk Way Cargo24. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/track.js"></script>
+</body>
+</body>
+</html>
