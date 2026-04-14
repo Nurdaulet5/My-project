@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Калькулятор доставки - Silk Way Cargo24</title>
+    <meta name="description" content="Онлайн-калькулятор доставки Silk Way Cargo24: расчет ориентировочной стоимости по маршруту, весу, объему и типу перевозки.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,7 +16,12 @@
                 <a href="index.html" class="logo">
                     Silk Way Cargo24
                 </a>
-                <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="mobile-nav" id="mobile-nav">
                     <ul>
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="services.html">Услуги</a></li>
@@ -128,7 +135,7 @@
 
                 <div class="result" id="result" style="display: none;">
                     <h3>Ориентировочная стоимость</h3>
-                    <div class="price" id="totalPrice">0 ₽</div>
+                    <div class="price" id="totalPrice">0 ₸</div>
                     <p style="margin-top: 15px; opacity: 0.8; font-size: 0.9rem;">
                         * Точная стоимость будет рассчитана после уточнения деталей
                     </p>
@@ -166,38 +173,38 @@
                         <thead style="background: var(--primary-color); color: var(--white);">
                             <tr>
                                 <th style="padding: 15px; text-align: left;">Направление</th>
-                                <th style="padding: 15px; text-align: left;">Авиа</th>
-                                <th style="padding: 15px; text-align: left;">Море</th>
-                                <th style="padding: 15px; text-align: left;">Авто</th>
-                                <th style="padding: 15px; text-align: left;">Ж/Д</th>
+                                <th style="padding: 15px; text-align: left;">Авиа (₸/кг)</th>
+                                <th style="padding: 15px; text-align: left;">Море (₸/кг)</th>
+                                <th style="padding: 15px; text-align: left;">Авто (₸/кг)</th>
+                                <th style="padding: 15px; text-align: left;">Ж/Д (₸/кг)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr style="border-bottom: 1px solid #eee;">
-                                <td style="padding: 15px;">Китай → Россия</td>
-                                <td style="padding: 15px;">от $4/кг</td>
-                                <td style="padding: 15px;">от $0.5/кг</td>
-                                <td style="padding: 15px;">от $1.5/кг</td>
-                                <td style="padding: 15px;">от $1/кг</td>
+                                <td style="padding: 15px;">Китай → Казахстан</td>
+                                <td style="padding: 15px;">от 2250 ₸</td>
+                                <td style="padding: 15px;">от 300 ₸</td>
+                                <td style="padding: 15px;">от 900 ₸</td>
+                                <td style="padding: 15px;">от 600 ₸</td>
                             </tr>
                             <tr style="border-bottom: 1px solid #eee;">
-                                <td style="padding: 15px;">Германия → Россия</td>
-                                <td style="padding: 15px;">от $5/кг</td>
-                                <td style="padding: 15px;">от $1/кг</td>
-                                <td style="padding: 15px;">от $1.2/кг</td>
-                                <td style="padding: 15px;">от $0.8/кг</td>
+                                <td style="padding: 15px;">Германия → Казахстан</td>
+                                <td style="padding: 15px;">от 2500 ₸</td>
+                                <td style="padding: 15px;">от 600 ₸</td>
+                                <td style="padding: 15px;">от 700 ₸</td>
+                                <td style="padding: 15px;">от 450 ₸</td>
                             </tr>
                             <tr style="border-bottom: 1px solid #eee;">
-                                <td style="padding: 15px;">Турция → Россия</td>
-                                <td style="padding: 15px;">от $3.5/кг</td>
-                                <td style="padding: 15px;">от $0.8/кг</td>
-                                <td style="padding: 15px;">от $1/кг</td>
+                                <td style="padding: 15px;">Турция → Казахстан</td>
+                                <td style="padding: 15px;">от 1900 ₸</td>
+                                <td style="padding: 15px;">от 450 ₸</td>
+                                <td style="padding: 15px;">от 550 ₸</td>
                                 <td style="padding: 15px;">—</td>
                             </tr>
                             <tr>
-                                <td style="padding: 15px;">ОАЭ → Россия</td>
-                                <td style="padding: 15px;">от $4/кг</td>
-                                <td style="padding: 15px;">от $1.2/кг</td>
+                                <td style="padding: 15px;">ОАЭ → Казахстан</td>
+                                <td style="padding: 15px;">от 2100 ₸</td>
+                                <td style="padding: 15px;">от 650 ₸</td>
                                 <td style="padding: 15px;">—</td>
                                 <td style="padding: 15px;">—</td>
                             </tr>

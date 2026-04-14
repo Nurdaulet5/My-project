@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты - Silk Way Cargo24</title>
+    <meta name="description" content="Контакты Silk Way Cargo24: адреса офисов, телефоны, email и форма заявки на международную доставку грузов.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,7 +16,12 @@
                 <a href="index.html" class="logo">
                     Silk Way Cargo24
                 </a>
-                <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="mobile-nav" id="mobile-nav">
                     <ul>
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="services.html">Услуги</a></li>
@@ -117,7 +124,7 @@ moscow@silkwaycargo24.kz
                 <!-- Форма обратной связи -->
                 <div class="contact-form">
                     <h3>📝 Оставить заявку</h3>
-                    <form action="https://formspree.io/f/xqedqjgw" method="POST" id="contactForm">
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Ваше имя *</label>
                             <input type="text" name="name" id="name" placeholder="Иван Иванов" required>
@@ -239,5 +246,9 @@ moscow@silkwaycargo24.kz
             </div>
         </div>
     </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/contacts.js"></script>
 </body>
 </html>

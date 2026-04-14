@@ -44,8 +44,8 @@ const baseRates = {
     }
 };
 
-// Курс доллара к рублю
-const USD_TO_RUB = 92;
+// Курс доллара к тенге
+const USD_TO_KZT = 500;
 
 // Коэффициенты
 const coefficients = {
@@ -63,8 +63,8 @@ const coefficients = {
     }
 };
 
-// Минимальная стоимость
-const MIN_PRICE = 1500;
+// Минимальная стоимость (в тенге)
+const MIN_PRICE = 750000;
 
 document.getElementById('cargoForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -116,18 +116,18 @@ document.getElementById('cargoForm').addEventListener('submit', function(e) {
     }
     
     // Применяем минимальную стоимость
-    if (priceUSD < MIN_PRICE / USD_TO_RUB) {
-        priceUSD = MIN_PRICE / USD_TO_RUB;
+    if (priceUSD < MIN_PRICE / USD_TO_KZT) {
+        priceUSD = MIN_PRICE / USD_TO_KZT;
     }
     
-    // Конвертируем в рубли
-    const priceRUB = Math.round(priceUSD * USD_TO_RUB);
+    // Конвертируем в тенге
+    const priceKZT = Math.round(priceUSD * USD_TO_KZT);
     
     // Форматируем цену
-    const formattedPrice = priceRUB.toLocaleString('ru-RU');
+    const formattedPrice = priceKZT.toLocaleString('ru-RU');
     
     // Показываем результат
-    document.getElementById('totalPrice').textContent = formattedPrice + ' ₽';
+    document.getElementById('totalPrice').textContent = formattedPrice + ' ₸';
     document.getElementById('result').style.display = 'block';
     
     // Прокрутка к результату

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявки клиентов - Silk Way Cargo24</title>
+    <meta name="description" content="Внутренняя страница сотрудников Silk Way Cargo24 для просмотра и экспорта заявок клиентов.">
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    Silk Way Cargo24
+                </a>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="mobile-nav" id="mobile-nav">
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="services.html">Услуги</a></li>
+                        <li><a href="calculator.html">Калькулятор</a></li>
+                        <li><a href="track.html">Отслеживание</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Заявки клиентов</h1>
+            <p>Внутренняя страница для сотрудников компании</p>
+        </div>
+    </section>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="background: var(--light-bg); padding: 25px; border-radius: 10px; margin-bottom: 25px;">
+                <form id="adminFilterForm" style="display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                    <div>
+                        <label for="adminKey" style="display: block; margin-bottom: 8px; color: var(--dark-text);">Admin key</label>
+                        <input id="adminKey" type="password" placeholder="x-admin-key" style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label for="limit" style="display: block; margin-bottom: 8px; color: var(--dark-text);">Лимит</label>
+                        <input id="limit" type="number" min="1" max="100" value="20" style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px;">
+                    </div>
+                    <div>
+                        <label for="offset" style="display: block; margin-bottom: 8px; color: var(--dark-text);">Смещение</label>
+                        <input id="offset" type="number" min="0" value="0" style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px;">
+                    </div>
+                    <div style="display: flex; align-items: end;">
+                        <button type="submit" class="btn" style="width: 100%;">Загрузить заявки</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="adminStatus" style="margin-bottom: 15px; color: var(--light-text);">Нажмите "Загрузить заявки".</div>
+
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                <button id="prevPageBtn" type="button" class="btn" style="cursor: pointer; background: #95a5a6;">Назад</button>
+                <button id="nextPageBtn" type="button" class="btn" style="cursor: pointer;">Вперед</button>
+                <button id="exportCsvBtn" type="button" class="btn" style="cursor: pointer; background: #27ae60;">Экспорт CSV</button>
+            </div>
+
+            <div id="leadsContainer" style="display: grid; gap: 15px;"></div>
+        </div>
+    </section>
+
+    <script src="js/config.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/admin-leads.js"></script>
+</body>
+</html>

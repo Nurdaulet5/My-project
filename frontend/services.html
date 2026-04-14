@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Услуги - Silk Way Cargo24</title>
+    <meta name="description" content="Услуги Silk Way Cargo24: морские, авиа, авто и железнодорожные перевозки, таможенное оформление, страхование и складская логистика.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,7 +16,12 @@
                 <a href="index.html" class="logo">
                     Silk Way Cargo24
                 </a>
-                <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="mobile-nav" id="mobile-nav">
                     <ul>
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="services.html" class="active">Услуги</a></li>
@@ -260,5 +267,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/menu.js"></script>
 </body>
 </html>

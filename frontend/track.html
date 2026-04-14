@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Отслеживание грузов - Silk Way Cargo24</title>
+    <meta name="description" content="Отслеживание грузов Silk Way Cargo24 по трек-номеру: текущий статус, маршрут и история доставки.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,7 +16,12 @@
                 <a href="index.html" class="logo">
                     Silk Way Cargo24
                 </a>
-                <nav>
+                <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="mobile-nav" id="mobile-nav">
                     <ul>
                         <li><a href="index.html">Главная</a></li>
                         <li><a href="services.html">Услуги</a></li>
@@ -100,7 +107,6 @@
                         </div>
 
                         <button type="button" onclick="resetTrack()" class="btn" style="width: 100%; margin-top: 20px; display: inline-block; cursor: pointer;">Новый поиск</button>
-                        <button type="button" id="deleteShipmentBtn" onclick="" class="btn" style="width: 100%; margin-top: 10px; background: #e74c3c; display: none; cursor: pointer;">Удалить груз</button>
                     </div>
                 </div>
 
@@ -118,62 +124,6 @@
                     </div>
                 </div>
 
-                <!-- Кнопка добавления груза -->
-                <div style="margin-top: 30px; text-align: center;">
-                    <button type="button" id="addShipmentBtn" onclick="showAddShipmentForm()" 
-                        class="btn" style="display: inline-block; cursor: pointer; background: #27ae60;">
-                        + Добавить свой груз
-                    </button>
-                </div>
-
-                <!-- Форма добавления груза -->
-                <div id="addShipmentForm" style="display: none; background: var(--light-bg); padding: 30px; border-radius: 10px; margin-top: 20px;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Создать новый груз</h3>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; color: var(--dark-text);">Трек-номер:</label>
-                        <input type="text" id="newTrackNumber" 
-                            style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;" 
-                            readonly>
-                    </div>
-
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; color: var(--dark-text);">Откуда (город, страна):</label>
-                        <input type="text" id="newFrom" placeholder="Например: Москва, Россия"
-                            style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;">
-                    </div>
-
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; color: var(--dark-text);">Куда (город, страна):</label>
-                        <input type="text" id="newTo" placeholder="Например: Берлин, Германия"
-                            style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;">
-                    </div>
-
-                    <div style="margin-bottom: 20px;">
-                        <label style="display: block; margin-bottom: 5px; color: var(--dark-text);">Статус:</label>
-                        <select id="newStatus" style="width: 100%; padding: 12px; border: 2px solid var(--primary-color); border-radius: 5px; font-size: 1rem;">
-                            <option value="Создан">Создан</option>
-                            <option value="В пути">В пути</option>
-                            <option value="На таможне">На таможне</option>
-                            <option value="Доставлено">Доставлено</option>
-                        </select>
-                    </div>
-
-                    <div style="display: flex; gap: 10px;">
-                        <button type="button" onclick="createShipment()" 
-                            class="btn" style="flex: 1; cursor: pointer; background: #27ae60;">Создать груз</button>
-                        <button type="button" onclick="hideAddShipmentForm()" 
-                            class="btn" style="flex: 1; cursor: pointer; background: #95a5a6;">Отмена</button>
-                    </div>
-                </div>
-
-                <!-- Мои грузы -->
-                <div style="margin-top: 40px;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px; text-align: center;">Мои грузы</h3>
-                    <div id="myShipmentsList">
-                        <p style="color: var(--light-text); text-align: center;">У вас пока нет грузов</p>
-                    </div>
-                </div>
             </div>
 
             <!-- Информационные карточки -->
@@ -239,7 +189,7 @@
         </div>
     </footer>
 
+    <script src="js/config.js"></script>
     <script src="js/track.js"></script>
-</body>
 </body>
 </html>
