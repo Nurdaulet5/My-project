@@ -44,6 +44,18 @@ const baseRates = {
     }
 };
 
+// Коэффициенты направления (from -> to)
+const routeMultipliers = {
+    cn: { kz: 1.0, ru: 1.15, by: 1.2, kg: 1.1 },
+    de: { kz: 1.0, ru: 1.12, by: 1.18, kg: 1.08 },
+    tr: { kz: 1.0, ru: 1.1, by: 1.16, kg: 1.07 },
+    us: { kz: 1.0, ru: 1.2, by: 1.25, kg: 1.12 },
+    ae: { kz: 1.0, ru: 1.14, by: 1.2, kg: 1.09 },
+    kr: { kz: 1.0, ru: 1.16, by: 1.22, kg: 1.11 },
+    it: { kz: 1.0, ru: 1.13, by: 1.19, kg: 1.09 },
+    ru: { kz: 0.95, by: 1.05, kg: 1.0 }
+};
+
 // Курс доллара к тенге
 const USD_TO_KZT = 500;
 
@@ -66,6 +78,12 @@ const coefficients = {
 // Минимальная стоимость (в тенге)
 const MIN_PRICE = 750000;
 
+function parsePositiveNumber(value) {
+    const parsed = Number.parseFloat(value);
+    if (!Number.isFinite(parsed) || parsed <= 0) return null;
+    return parsed;
+}
+
 document.getElementById('cargoForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -73,20 +91,50 @@ document.getElementById('cargoForm').addEventListener('submit', function(e) {
     const transportType = document.getElementById('transportType').value;
     const fromCountry = document.getElementById('fromCountry').value;
     const toCountry = document.getElementById('toCountry').value;
-    const weight = parseFloat(document.getElementById('weight').value);
-    const volume = parseFloat(document.getElementById('volume').value) || 0;
+    const weight = parsePositiveNumber(document.getElementById('weight').value);
+    const volumeInput = document.getElementById('volume').value;
+    const volume = volumeInput ? Number.parseFloat(volumeInput) : 0;
     const cargoType = document.getElementById('cargoType').value;
     const urgency = document.getElementById('urgency').value;
     const hasInsurance = document.getElementById('insurance').checked;
     const hasDoorToDoor = document.getElementById('doorToDoor').checked;
     
-    // Проверяем доступность направления
-    const rate = baseRates[transportType][fromCountry];
-    
-    if (!rate) {
-        alert('К сожалению, доставка из выбранной страны данным видом транспорта недоступна.');
+    if (!transportType || !fromCountry || !toCountry) {
+        alert('Заполните вид транспорта и маршрут доставки.');
         return;
     }
+
+    if (!weight) {
+        alert('Введите корректный вес груза (больше 0).');
+        return;
+    }
+
+    if (volumeInput && (!Number.isFinite(volume) || volume < 0)) {
+        alert('Введите корректный объём груза.');
+        return;
+    }
+
+    if (fromCountry === toCountry) {
+        alert('Страна отправления и назначения не должны совпадать.');
+        return;
+    }
+
+    const transportRates = baseRates[transportType];
+    const baseRate = transportRates ? transportRates[fromCountry] : null;
+    const routeMultiplier = routeMultipliers[fromCountry]?.[toCountry];
+    
+    // Проверяем доступность направления
+    if (baseRate == null) {
+        alert('К сожалению, доставка из выбранной страны этим видом транспорта недоступна.');
+        return;
+    }
+
+    if (routeMultiplier == null) {
+        alert('К сожалению, выбранное направление пока недоступно.');
+        return;
+    }
+
+    const rate = baseRate * routeMultiplier;
     
     // Рассчитываем стоимость
     let priceUSD = weight * rate;
