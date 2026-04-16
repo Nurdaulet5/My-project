@@ -25,7 +25,7 @@ const baseRates = {
     auto: {
         cn: 1.8,
         de: 1.4,
-        tr: 1.2,
+        tr: 1.1,
         us: null,
         ae: null,
         kr: 2.0,
@@ -75,8 +75,8 @@ const coefficients = {
     }
 };
 
-// Минимальная стоимость (в тенге)
-const MIN_PRICE = 750000;
+// Минимальная стоимость отключена, чтобы калькулятор соответствовал тарифам на странице
+const MIN_PRICE = 0;
 
 function parsePositiveNumber(value) {
     const parsed = Number.parseFloat(value);
